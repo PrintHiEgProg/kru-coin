@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import NavBar from "./NavBar/NavBar.tsx";
-import Boost from "./pages/Boost.tsx";
-import Main from "./pages/Main.tsx";
-import Task from "./pages/Task.tsx";
-import RefLink from "./pages/RefLink.tsx";
+import NavBar from "./NavBar/NavBar.js";
+import Boost from "./pages/Boost.js";
+import Main from "./pages/Main.js";
+import Task from "./pages/Task.js";
+import RefLink from "./pages/RefLink.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
