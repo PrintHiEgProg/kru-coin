@@ -1,38 +1,194 @@
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
+
 .App {
+  height: 100vh; /* Занимает весь доступный экран по высоте */
+  width: 100vw;
+  background-color: rgb(37, 105, 168); /* Черный фон */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0; /* Убираем внешние отступы */
+  padding: 0; /* Убираем внутренние отступы */
+  -ms-user-select: none; 
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	user-select: none; 
+}
+
+.NavBar {
+  display: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -ms-user-select: none; 
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	user-select: none; 
+  bottom: 0;
+}
+
+.title {
+  color: #ffffff; /* Белый цвет текста */
+  text-align: center;
+  font-size: 6vh; /* Размер шрифта зависит от высоты экрана */
+  margin: 20px 0; /* Отступы сверху и снизу */
+}
+
+.count-click {
+  color: #ffffff;
+  text-align: center;
+  font-size: 5vh; /* Больший размер шрифта для счетчика */
+  margin: 20px 0; /* Отступы сверху и снизу */
+}
+
+.coin-btn {
+  width: 100%; /* Ширина кнопки равна ширине контейнера */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  
+}
+
+.coin-button {
+  width: 60vw; /* Ширина кнопки в процентах от ширины экрана */
+  height: 60vw; /* Высота кнопки равна ширине для сохранения круглой формы */
+  max-width: 270px; /* Максимальная ширина кнопки */
+  max-height: 270px; /* Максимальная высота кнопки */
+  overflow: hidden; /* Скрываем выходящие за пределы круга части */
+  background-color: black; /* Цвет фона кнопки */
+  border: none; /* Убираем границу */
+  padding: 0; /* Убираем внутренние отступы */
+  cursor: pointer; /* Курсор в виде указателя */
+  background-image: url(https://i.postimg.cc/CdpBgyZm/temp-Image3-IX8-Ss.avif);
+  background-size: contain;
+  border-radius: 50%; /* Круглая форма */
+  display: block; /* Убираем лишние отступы вокруг изображения */
+  object-fit: cover;
+}
+
+.img-boobs {
+  width: 100%; /* Заполняет ширину контейнера */
+  height: auto; /* Высота автоматически регулируется для сохранения пропорций */
+  border-radius: 50%; /* Круглая форма */
+  display: block; /* Убираем лишние отступы вокруг изображения */
+  object-fit: cover; /* Обеспечивает полное покрытие круга, обрезая лишнее */
+}
+
+.box-progress {
+  margin-top: 10px;
+  width: 60vw; /* Ширина кнопки в процентах от ширины экрана */
+  height: 60vw; /* Высота кнопки равна ширине для сохранения круглой формы */
+  max-width: 270px; /* Максимальная ширина кнопки */
+  max-height: 50px; /* Максимальная высота кнопки */
+  background: #3e92cc;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.coin-progress {
+  text-align: center;
+  width: 0%;
+  height: 5px;
+  color: #ffffff;
+  background-color: #ffee01;
+  transition: width 0.3s ease;
+}
+
+.sum-true {
+  color: #ffffff;
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+.nav-bar-btn-box {
+  bottom: 0;
+  position: fixed;
+  display: flex;
+        justify-content: space-around;
+        align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 60vw; /* Ширина кнопки в процентах от ширины экрана */
+  height: 60vw; /* Высота кнопки равна ширине для сохранения круглой формы */
+  max-width: 270px; /* Максимальная ширина кнопки */
+  max-height: 80px; /* Максимальная высота кнопки */
+  background: #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 1px 1px 1px 1px;
+}
+
+.nav-btn {
+  display: inline;
+}
+
+.btn-description {
+  text-decoration: none;
+}
+
+.bottom-navigation {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #f0f0f0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .icon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 0;
+    }
+
+    .icon {
+      margin-top: 8px;
+        width: 40px;
+        height: 40px;
+        
+    }
+
+    
+
+
+
+.home {
+  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470080486703195/photo_2024-06-23_7.15.55_PM.jpeg?ex=66799bce&is=66784a4e&hm=67368daddab3ea2d15b0ce01024acd034acba81cde71435109770994d6d07463&);
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center; 
+}
+
+.boost {
+  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470080964591616/photo_2024-06-23_7.15.52_PM.jpeg?ex=66799bce&is=66784a4e&hm=a4f95377aa3747e08b5526534ee837f5e12731fb3e0ac2451c39e6d68d7813a7&);
+  background-size: contain;
+  background-repeat: no-repeat;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.task {
+  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470080729845900/photo_2024-06-23_7.15.53_PM.jpeg?ex=66799bce&is=66784a4e&hm=2abb2d2a47a3203f63502a49c96838f587ff1bf087875667fdd412f1e3603253&);
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.reflink {
+  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470081174568970/photo_2024-06-23_7.15.51_PM.jpeg?ex=66799bce&is=66784a4e&hm=a127e765ab835e898ae44743ced2c54df2b5bdf133e5ea818de45e1acb79a633&);
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.icon-description {
+  font-size: 15px;
 }
