@@ -1,9 +1,13 @@
 import React from "react";
 
-function RefLink() {
-    return( <div className="RefLink">
-      <h2 className="title">Reflink</h2>
+const RefLink = ({ referralCode }) => {
+  
+  return (
+    <div>
+     <h1>RefLink</h1>
     </div>
-    );
-}
+  );
+};
+
 export default RefLink;
+

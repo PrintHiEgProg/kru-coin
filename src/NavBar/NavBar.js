@@ -22,22 +22,22 @@ function NavBar() {
 
   return (
     <div className="NavBar">
-      <br />
       <div className="nav-bar-btn-box">
         <div className="icon-container" onClick={handleHomeClick}>
-          <div className="icon home"></div>
+          <button className="icon home"></button>
           <p className="icon-description">home</p>
         </div>
+
         <div className="icon-container" onClick={handleBoostClick}>
-          <div className="icon boost"></div>
+          <button className="icon boost"></button>
           <p className="icon-description">boost</p>
         </div>
         <div className="icon-container" onClick={handleTaskClick}>
-          <div className="icon task"></div>
+          <button className="icon task"></button>
           <p className="icon-description">task</p>
         </div>
         <div className="icon-container" onClick={handleRefLinkClick}>
-          <div className="icon reflink"></div>
+          <button className="icon reflink"></button>
           <p className="icon-description">link</p>
         </div>
       </div>

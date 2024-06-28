@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
 @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
 @media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
@@ -6,8 +13,7 @@
 @media (min-width:1281px) { /* hi-res laptops and desktops */ }
 
 .App {
-  height: 100vh; /* Занимает весь доступный экран по высоте */
-  width: 100vw;
+  height: 100vh;
   background-color: rgb(37, 105, 168); /* Черный фон */
   display: flex;
   flex-direction: column;
@@ -22,7 +28,6 @@
 }
 
 .NavBar {
-  display: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,8 +38,23 @@
 	user-select: none; 
   bottom: 0;
 }
+.Main {
+  height: 100vh;
+}
 
+.Boost {
+  height: 100vh;
+}
+
+.Task {
+  height: 100vh;
+}
+
+.RefLink {
+  height: 100vh;
+}
 .title {
+  padding-top: 10vh;
   color: #ffffff; /* Белый цвет текста */
   text-align: center;
   font-size: 6vh; /* Размер шрифта зависит от высоты экрана */
@@ -71,7 +91,8 @@
   background-size: contain;
   border-radius: 50%; /* Круглая форма */
   display: block; /* Убираем лишние отступы вокруг изображения */
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .img-boobs {
@@ -79,11 +100,11 @@
   height: auto; /* Высота автоматически регулируется для сохранения пропорций */
   border-radius: 50%; /* Круглая форма */
   display: block; /* Убираем лишние отступы вокруг изображения */
-  object-fit: cover; /* Обеспечивает полное покрытие круга, обрезая лишнее */
+  -o-object-fit: cover;
+     object-fit: cover; /* Обеспечивает полное покрытие круга, обрезая лишнее */
 }
 
 .box-progress {
-  margin-top: 10px;
   width: 60vw; /* Ширина кнопки в процентах от ширины экрана */
   height: 60vw; /* Высота кнопки равна ширине для сохранения круглой формы */
   max-width: 270px; /* Максимальная ширина кнопки */
@@ -95,10 +116,12 @@
 .coin-progress {
   text-align: center;
   width: 0%;
+  max-width: 90%;
   height: 5px;
   color: #ffffff;
   background-color: #ffee01;
   transition: width 0.3s ease;
+  border: 0;
 }
 
 .sum-true {
@@ -132,16 +155,7 @@
   text-decoration: none;
 }
 
-.bottom-navigation {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: #f0f0f0;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding: 10px 0;
-    }
+
 
     .icon-container {
         display: flex;
@@ -154,6 +168,7 @@
       margin-top: 8px;
         width: 40px;
         height: 40px;
+        border: none;
         
     }
 
@@ -162,28 +177,28 @@
 
 
 .home {
-  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470080486703195/photo_2024-06-23_7.15.55_PM.jpeg?ex=66799bce&is=66784a4e&hm=67368daddab3ea2d15b0ce01024acd034acba81cde71435109770994d6d07463&);
+  background-image: url(https://i.postimg.cc/pLw8ZsVK/temp-Imagee-Om-PJG.avif);
   background-size: contain;
   background-repeat: no-repeat;
-  text-align: center; 
+  
 }
 
 .boost {
-  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470080964591616/photo_2024-06-23_7.15.52_PM.jpeg?ex=66799bce&is=66784a4e&hm=a4f95377aa3747e08b5526534ee837f5e12731fb3e0ac2451c39e6d68d7813a7&);
+  background-image: url(https://i.postimg.cc/pL47BMnk/temp-Imagexhab-Wr.avif);
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
 }
 
 .task {
-  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470080729845900/photo_2024-06-23_7.15.53_PM.jpeg?ex=66799bce&is=66784a4e&hm=2abb2d2a47a3203f63502a49c96838f587ff1bf087875667fdd412f1e3603253&);
+  background-image: url(https://i.postimg.cc/KzyHd7fM/temp-Image-GVZB90.avif);
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
 }
 
 .reflink {
-  background-image: url(https://cdn.discordapp.com/attachments/1243965505513984013/1254470081174568970/photo_2024-06-23_7.15.51_PM.jpeg?ex=66799bce&is=66784a4e&hm=a127e765ab835e898ae44743ced2c54df2b5bdf133e5ea818de45e1acb79a633&);
+  background-image: url(https://i.postimg.cc/0N1nQkSg/temp-Image7-Pk-ROM.avif);
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
@@ -191,4 +206,108 @@
 
 .icon-description {
   font-size: 15px;
+}
+
+.catalog {
+  text-align: center;
+}
+
+
+.card {
+  width: 60vw;
+  height: 60vw;
+  max-width: 300px;
+  max-height: 100px;
+  background: #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 1px 1px 1px 1px;
+  margin-bottom: 10px;
+  
+}
+
+.card-text {
+text-align: right;
+padding-right: 5%;
+padding-top: 5%;
+}
+
+.card-hr {
+  margin-top: 10%;
+  width: 100%;
+  height: 3px;
+  border: 0;
+  background-color: black;
+}
+
+.card-footer {
+  display: flex;
+}
+
+.card-level {
+  text-align: left;
+  padding-left: 5%;
+  color: black;
+}
+
+.card-price {
+  text-align: right;
+  padding-left: 60%;
+}
+
+.card-money {
+  width: 20px;
+  height: 20px;
+  background-image: url(https://i.postimg.cc/CdpBgyZm/temp-Image3-IX8-Ss.avif);
+  background-size: contain;
+  border-radius: 50%; /* Круглая форма */
+  display: block; /* Убираем лишние отступы вокруг изображения */
+}
+
+.task-card {
+  width: 60vw;
+  height: 60vw;
+  max-width: 300px;
+  max-height: 100px;
+  background: #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 1px 1px 1px 1px;
+  margin-bottom: 10px;
+}
+
+.task-text {
+  text-align: right;
+  padding-right: 5%;
+  padding-top: 5%;
+}
+
+.task-hr {
+  margin-top: 10%;
+  width: 100%;
+  height: 3px;
+  border: 0;
+  background-color: black;
+}
+
+.task-footer {
+  display: flex;
+}
+
+.task-level {
+  text-align: left;
+  padding-left: 5%;
+  color: black;
+}
+
+.task-price {
+  text-align: right;
+  padding-left: 60%;
+}
+
+.task-money {
+  width: 20px;
+  height: 20px;
+  background-image: url(https://i.postimg.cc/CdpBgyZm/temp-Image3-IX8-Ss.avif);
+  background-size: contain;
+  border-radius: 50%; /* Круглая форма */
+  display: block; /* Убираем лишние отступы вокруг изображения */
 }
