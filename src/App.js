@@ -3,8 +3,8 @@ import "./App.css";
 import NavBar from "./NavBar/NavBar.js";
 import Boost from "./Boost.js";
 import Main from "./Main.js";
-import Task from "./pages/Task.js";
-import RefLink from "./pages/RefLink.js";
+import Task from "./Task.js";
+import RefLink from "./RefLink.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const tg = window.Telegram.WebApp;
 
