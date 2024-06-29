@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
-const RefLink = ({ referralCode }) => {
-  
+function RefLink() {
+
   return (
-    <div>
-     <h1>RefLink</h1>
+    <div className='RefLink'>
+      <h2 className='title'>RefLink</h2>
     </div>
   );
+  
 };
 
 export default RefLink;
-
