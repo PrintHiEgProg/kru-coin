@@ -53,6 +53,13 @@
 .RefLink {
   height: 100vh;
 }
+
+.Loading-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://i.postimg.cc/XJfjwd38/temp-Imagem3z-Mky.avif);
+}
+
 .title {
   padding-top: 10vh;
   color: #ffffff; /* Белый цвет текста */

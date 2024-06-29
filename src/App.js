@@ -71,46 +71,56 @@ function App() {
     }
   }, [countTrue]);
 
-  const [UserID, setUserId] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      "https://api.telegram.org/bot7018807448:AAFwKDKpTX7QJbh1EXAwCIq7V_0lZiKyzoY/getUpdates"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.result.length > 0) {
-          const id = data.result[0].message.from.id;
-          setUserId(id);
-        }
-      })
-      .catch((error) => console.error(error));
+    // Имитация загрузки данных (можете заменить этот setTimeout на реальную логику загрузки)
+    setTimeout(() => {
+      setLoading(false); // После завершения загрузки устанавливаем loading в false
+    }, 3000); // Пример: имитация загрузки в течение 3 секунд
+
+    // Здесь можно добавить логику для загрузки данных с сервера или другие операции
   }, []);
+
+
 
 
 
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <Main
-                count={count}
-                handleClick={handleClick}
-                countTrue={countTrue}
-                canClick={canClick}
-              />
-            }
-          />
-          <Route path="/boost" element={<Boost count={count} />} />
-          <Route path="/task" element={<Task />} />
-          <Route path="/link" element={<RefLink UserID={UserID} />} />
-        </Routes>
-        <NavBar />
-      </Router>
+      {loading ? (
+        <div className="Loading-page">
+          <h1 className="title">
+            Welcome
+            <br />
+            Quack Coin!
+          </h1>
+          <div className="contact">
+            
+          </div>
+        </div>
+      ) : (
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <Main
+                  count={count}
+                  handleClick={handleClick}
+                  countTrue={countTrue}
+                  canClick={canClick}
+                />
+              }
+            />
+            <Route path="/boost" element={<Boost count={count} />} />
+            <Route path="/task" element={<Task />} />
+            <Route path="/link" element={<RefLink />} />
+          </Routes>
+          <NavBar />
+        </Router>
+      )}
     </div>
   );
 }
