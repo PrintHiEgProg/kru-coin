@@ -8,8 +8,6 @@ import RefLink from "./RefLink.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const tg = window.Telegram.WebApp;
-  const user_id = tg.id
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem("count");
     return savedCount !== null ? parseInt(savedCount, 10) : 0;
@@ -73,19 +71,22 @@ function App() {
     }
   }, [countTrue]);
 
-
-  const [username, setUsername] = useState("");
+  const [UserID, setUserId] = useState("");
 
   useEffect(() => {
     fetch(
-      "https://api.telegram.org/bot7018807448:AAFwKDKpTX7QJbh1EXAwCIq7V_0lZiKyzoY/getMe"
+      "https://api.telegram.org/bot7018807448:AAFwKDKpTX7QJbh1EXAwCIq7V_0lZiKyzoY/getUpdates"
     )
       .then((response) => response.json())
       .then((data) => {
-        setUsername(data.result.username);
+        if (data.result.length > 0) {
+          const id = data.result[0].message.from.id;
+          setUserId(id);
+        }
       })
       .catch((error) => console.error(error));
   }, []);
+
 
 
   return (
@@ -106,7 +107,7 @@ function App() {
           />
           <Route path="/boost" element={<Boost count={count} />} />
           <Route path="/task" element={<Task />} />
-          <Route path="/link" element={<RefLink user_id={user_id} />} />
+          <Route path="/link" element={<RefLink UserID={UserID} />} />
         </Routes>
         <NavBar />
       </Router>
