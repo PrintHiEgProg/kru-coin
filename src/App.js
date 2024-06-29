@@ -72,6 +72,19 @@ function App() {
   }, [countTrue]);
 
 
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    fetch(
+      "https://api.telegram.org/bot7018807448:AAFwKDKpTX7QJbh1EXAwCIq7V_0lZiKyzoY/getMe"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setUsername(data.result.username);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
 
   return (
     <div className="App">
@@ -91,7 +104,7 @@ function App() {
           />
           <Route path="/boost" element={<Boost count={count} />} />
           <Route path="/task" element={<Task />} />
-          <Route path="/link" element={<RefLink />} />
+          <Route path="/link" element={<RefLink username={username} />} />
         </Routes>
         <NavBar />
       </Router>
