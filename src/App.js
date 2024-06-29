@@ -8,6 +8,8 @@ import RefLink from "./RefLink.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const tg = window.Telegram.WebApp;
+  const user_id = tg.id
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem("count");
     return savedCount !== null ? parseInt(savedCount, 10) : 0;
@@ -104,7 +106,7 @@ function App() {
           />
           <Route path="/boost" element={<Boost count={count} />} />
           <Route path="/task" element={<Task />} />
-          <Route path="/link" element={<RefLink username={username} />} />
+          <Route path="/link" element={<RefLink user_id={user_id} />} />
         </Routes>
         <NavBar />
       </Router>
