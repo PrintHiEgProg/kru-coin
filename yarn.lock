@@ -9199,6 +9199,11 @@
   "resolved" "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   "version" "2.2.1"
 
+"telegram-web-app@^0.0.0":
+  "integrity" "sha512-ATBq/6ZRIwp7CnU1QMv1aSSLkUJFvO4FHZpbXpOdsFVO9n7teWsrC2I0JbHwfAhx6CgiaOVv+pdmHIlXZiK5ug=="
+  "resolved" "https://registry.npmjs.org/telegram-web-app/-/telegram-web-app-0.0.0.tgz"
+  "version" "0.0.0"
+
 "temp-dir@^2.0.0":
   "integrity" "sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg=="
   "resolved" "https://registry.npmjs.org/temp-dir/-/temp-dir-2.0.0.tgz"
