@@ -82,6 +82,33 @@ function App() {
     // Здесь можно добавить логику для загрузки данных с сервера или другие операции
   }, []);
 
+  const [userId, setUserId] = useState(""); // Используем state для хранения ID пользователя
+
+  // Функция для получения ID пользователя
+  const getUserId = async () => {
+    try {
+      // Здесь вам нужно будет заменить 'YOUR\_BOT\_TOKEN' на токен вашего бота
+      const response = await fetch(
+        `https://api.telegram.org/bot7018807448:AAFwKDKpTX7QJbh1EXAwCIq7V_0lZiKyzoY/getMe`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setUserId(data.result.id); // Сохраняем ID в state
+    } catch (error) {
+      console.error("Ошибка при получении ID пользователя:", error);
+    }
+  };
+
+  // Вызываем функцию при загрузке компонента
+  useEffect(() => {
+    getUserId();
+  }, []);
+
 
 
 
@@ -96,7 +123,7 @@ function App() {
             Quack Coin!
           </h1>
           <div className="contact">
-            
+
           </div>
         </div>
       ) : (
@@ -116,7 +143,7 @@ function App() {
             />
             <Route path="/boost" element={<Boost count={count} />} />
             <Route path="/task" element={<Task />} />
-            <Route path="/link" element={<RefLink />} />
+              <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>
           <NavBar />
         </Router>
