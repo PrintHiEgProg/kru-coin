@@ -117,9 +117,7 @@ function App() {
             <br />
             Quack Coin!
           </h1>
-          <div className="contact">
-
-          </div>
+          <div className="contact"></div>
         </div>
       ) : (
         <Router>
@@ -136,9 +134,9 @@ function App() {
                 />
               }
             />
-            <Route path="/boost" element={<Boost count={count} />} />
+              <Route path="/boost" element={<Boost count={count} moreClicks={moreClicks} />} />
             <Route path="/task" element={<Task />} />
-              <Route path="/link" element={<RefLink userId={userId}/>} />
+            <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>
           <NavBar />
         </Router>

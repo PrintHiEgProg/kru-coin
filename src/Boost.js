@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 
-function Boost({ count }) {
+function Boost({ count, moreClicks }) {
   return (
     <div className="Boost">
       <h2 className="title">Boost</h2>
       <p className="count-click">{count}</p>
       <div className="catalog">
-        <div className="card">
+        <div className="card" onClick={moreClicks}>
           <div className="card-img"></div>
           <div className="card-text">
             <b>more clicks</b>
