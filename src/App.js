@@ -89,7 +89,6 @@ function App() {
 
   useEffect(() => {
     if (countTrue === 0) {
-      const HapticFeedbackError = tg.HapticFeedback.notificationOccurred("warning");
       alert("Scrooge is tired... 😴");
     }
   }, [countTrue]);
@@ -113,7 +112,7 @@ function App() {
     if (count >= priceMoreClick) {
       if (window.confirm("here you can buy more clicks in one click 🤑")) {
         setCount(count - priceMoreClick);
-        if (countBonus == 0) {
+        if (countBonus === 0) {
           setCountBonus(countBonus + 1)
         };  
         setCountBonus(countBonus * 2);
