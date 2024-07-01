@@ -23,7 +23,7 @@ function App() {
   });
   const [countBonus, setCountBonus] = useState(() => {
     const savedCountBonus = localStorage.getItem("countBonus");
-    return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 0;
+    return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
   });
   const [levelMoreClicks, setlevelMoreClicks] = useState(() => {
     const savedlevelMoreClicks = localStorage.getItem("levelMoreClicks");
@@ -111,12 +111,9 @@ function App() {
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
     if (count >= priceMoreClick) {
       if (window.confirm("here you can buy more clicks in one click 🤑")) {
-        setCount(count - priceMoreClick);
-        if (countBonus === 0) {
-          setCountBonus(countBonus + 1)
-        };  
+        setCount(count - priceMoreClick); 
         setCountBonus(countBonus * 2);
-        setlevelMoreClicks(levelMoreClicks + 1)
+        setlevelMoreClicks(levelMoreClicks + 1);
         alert("thanks for the purchase ✅");
       } 
     } else {
