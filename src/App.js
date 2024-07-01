@@ -100,12 +100,17 @@ function App() {
   const priceMoreClick = 100
 
   const moreClicks = () => {
-    const confirm = confirm("here you can buy more clicks in one click ✅")
-    if (confirm) {
-      setCount(count - priceMoreClick)
-      setCountBonus(countBonus * 2)
-      alert("Спасибо за покупку 🤑")
-    } 
+    const confirm = confirm("here you can buy more clicks in one click 🤑");
+    if (count >= priceMoreClick) {
+      if (confirm) {
+        setCount(count - priceMoreClick);
+        setCountBonus(countBonus * 2);
+        alert("thanks for the purchase ✅");
+      } 
+    } else {
+      alert("insufficient funds ❌");
+    }
+    
   }
 
   return (
