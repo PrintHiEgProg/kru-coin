@@ -55,6 +55,7 @@
 }
 
 .Loading-page {
+  text-align: center;
   width: 100vw;
   height: 100vh;
   background-image: url(https://i.postimg.cc/XJfjwd38/temp-Imagem3z-Mky.avif);
@@ -322,7 +323,7 @@ padding-top: 5%;
 
 .loading-wheel {
   text-align: center;
-   margin-top: 20vh;
+   margin-top: 10vh;
     width: 20vh;
     -webkit-animation-name: rotation;
     -webkit-animation-duration: 3s;
