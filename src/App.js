@@ -20,7 +20,10 @@ function App() {
     const savedCount = localStorage.getItem("count");
     return savedCount !== null ? parseInt(savedCount, 10) : 0;
   });
-
+  const [countBonus, setCountBonus] = useState(() => {
+    const savedCountBonus = localStorage.getItem("countBonus");
+    return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
+  });
   const [countTrue, setCountTrue] = useState(() => {
     const savedCountTrue = localStorage.getItem("countTrue");
     const lastUpdateTime = localStorage.getItem("lastUpdateTime");
@@ -60,7 +63,7 @@ function App() {
 
   const handleClick = () => {
     if (canClick) {
-      setCount(count + 1);
+      setCount(count + countBonus);
     if (navigator.vibrate) {
       // vibration API supported
       navigator.vibrate(1000);
@@ -79,7 +82,7 @@ function App() {
 
   useEffect(() => {
     if (countTrue === 0) {
-      alert("Скрудж устал 😴");
+      alert("Scrooge is tired... 😴");
     }
   }, [countTrue]);
 
@@ -94,6 +97,16 @@ function App() {
     // Здесь можно добавить логику для загрузки данных с сервера или другие операции
   }, []);
 
+  const priceMoreClick = 100
+
+  const moreClicks = () => {
+    const confirm = confirm("here you can buy more clicks in one click ✅")
+    if (confirm) {
+      setCount(count - priceMoreClick)
+      setCountBonus(countBonus * 2)
+      alert("Спасибо за покупку 🤑")
+    } 
+  }
 
   return (
     <div className="App">

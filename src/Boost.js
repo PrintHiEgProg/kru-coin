@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function Boost({count}) {
+function Boost({ count }) {
   return (
     <div className="Boost">
       <h2 className="title">Boost</h2>
@@ -10,7 +10,7 @@ function Boost({count}) {
         <div className="card">
           <div className="card-img"></div>
           <div className="card-text">
-            <b>factory</b>
+            <b>more clicks</b>
           </div>
           <hr className="card-hr" />
           <div className="card-footer">
@@ -21,7 +21,19 @@ function Boost({count}) {
         </div>
         <div className="card">
           <div className="card-text">
-            <b>factory</b>
+            <b>more enegry</b>
+          </div>
+          <hr className="card-hr" />
+          <div className="card-footer">
+            <div className="card-level">1 lv</div>
+            <div className="card-price">100</div>
+            <div className="card-money"></div>
+          </div>
+        </div>
+        <h4 className="title">factories</h4>
+        <div className="card">
+          <div className="card-text">
+            <b>shoe factory</b>
           </div>
           <hr className="card-hr" />
           <div className="card-footer">
@@ -32,7 +44,7 @@ function Boost({count}) {
         </div>
         <div className="card">
           <div className="card-text">
-            <b>factory</b>
+            <b>hotel</b>
           </div>
           <hr className="card-hr" />
           <div className="card-footer">
@@ -43,7 +55,7 @@ function Boost({count}) {
         </div>
         <div className="card">
           <div className="card-text">
-            <b>factory</b>
+            <b>bank</b>
           </div>
           <hr className="card-hr" />
           <div className="card-footer">
