@@ -16,6 +16,7 @@ function App() {
 
   const tg = window.Telegram.WebApp;
   const userId = tg.initDataUnsafe.user.id;
+  
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem("count");
     return savedCount !== null ? parseInt(savedCount, 10) : 0;
@@ -64,10 +65,10 @@ function App() {
   const handleClick = () => {
     if (canClick) {
       setCount(count + countBonus);
-    if (navigator.vibrate) {
-      // vibration API supported
-      navigator.vibrate(1000);
-    }
+      if (true) {
+        const hapticFeedback = tg.HapticFeedback.impactOccurred("soft");
+      }
+    
 
       if (countTrue > 0) {
         setCountTrue(Math.max(countTrue - 1, 0));
