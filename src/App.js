@@ -8,6 +8,12 @@ import RefLink from "./RefLink.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  navigator.vibrate =
+    navigator.vibrate ||
+    navigator.webkitVibrate ||
+    navigator.mozVibrate ||
+    navigator.msVibrate;
+
   const tg = window.Telegram.WebApp;
   const userId = tg.initDataUnsafe.user.id;
   const [count, setCount] = useState(() => {
@@ -55,6 +61,10 @@ function App() {
   const handleClick = () => {
     if (canClick) {
       setCount(count + 1);
+    if (navigator.vibrate) {
+      // vibration API supported
+      navigator.vibrate(1000);
+    }
 
       if (countTrue > 0) {
         setCountTrue(Math.max(countTrue - 1, 0));
