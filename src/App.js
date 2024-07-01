@@ -129,6 +129,10 @@ function App() {
             <br />
             Quack Coin!
           </h1>
+          <img
+            className="loading-wheel"
+            src="https://printhiegprog.github.io/loading-wheel.png"
+          />
           <div className="contact"></div>
         </div>
       ) : (
