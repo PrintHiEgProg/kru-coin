@@ -89,6 +89,7 @@ function App() {
 
   useEffect(() => {
     if (countTrue === 0) {
+      const HapticFeedbackError = tg.HapticFeedback.notificationOccurred("warning");
       alert("Scrooge is tired... 😴");
     }
   }, [countTrue]);
