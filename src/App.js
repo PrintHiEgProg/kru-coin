@@ -25,6 +25,12 @@ function App() {
     const savedCountBonus = localStorage.getItem("countBonus");
     return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
   });
+  const [levelMoreClicks, setlevelMoreClicks] = useState(() => {
+    const savedlevelMoreClicks = localStorage.getItem("levelMoreClicks");
+    return savedlevelMoreClicks !== null
+      ? parseInt(savedlevelMoreClicks, 10)
+      : 0;
+  });
   const [countTrue, setCountTrue] = useState(() => {
     const savedCountTrue = localStorage.getItem("countTrue");
     const lastUpdateTime = localStorage.getItem("lastUpdateTime");
@@ -99,7 +105,7 @@ function App() {
     // Здесь можно добавить логику для загрузки данных с сервера или другие операции
   }, []);
 
-  const priceMoreClick = 100
+  const priceMoreClick = 1
 
   const moreClicks = () => {
     
@@ -108,6 +114,7 @@ function App() {
       if (window.confirm("here you can buy more clicks in one click 🤑")) {
         setCount(count - priceMoreClick);
         setCountBonus(countBonus * 2);
+        setlevelMoreClicks(levelMoreClicks + 1)
         alert("thanks for the purchase ✅");
       } 
     } else {
@@ -142,7 +149,17 @@ function App() {
                 />
               }
             />
-              <Route path="/boost" element={<Boost count={count} moreClicks={moreClicks} />} />
+            <Route
+              path="/boost"
+              element={
+                <Boost
+                  count={count}
+                  moreClicks={moreClicks}
+                  priceMoreClick={priceMoreClick}
+                  levelMoreClicks={levelMoreClicks}
+                />
+              }
+            />
             <Route path="/task" element={<Task />} />
             <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>

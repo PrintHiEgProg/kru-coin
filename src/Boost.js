@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function Boost({ count, moreClicks }) {
+function Boost({ count, moreClicks, priceMoreClick, levelMoreClicks }) {
   return (
     <div className="Boost">
       <h2 className="title">Boost</h2>
@@ -14,8 +14,8 @@ function Boost({ count, moreClicks }) {
           </div>
           <hr className="card-hr" />
           <div className="card-footer">
-            <div className="card-level">1 lv</div>
-            <div className="card-price">100</div>
+            <div className="card-level">{levelMoreClicks} lv</div>
+            <div className="card-price">{priceMoreClick}</div>
             <div className="card-money"></div>
           </div>
         </div>
