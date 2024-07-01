@@ -131,7 +131,7 @@ function App() {
           </h1>
           <img
             className="loading-wheel"
-            src="https://printhiegprog.github.io/loading-wheel.png"
+            src="https://printhiegprog.github.io/loading-wheel.png" alt="loading-wheel"
           />
           <div className="contact"></div>
         </div>
