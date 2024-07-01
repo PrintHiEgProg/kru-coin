@@ -8,12 +8,6 @@ import RefLink from "./RefLink.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  navigator.vibrate =
-    navigator.vibrate ||
-    navigator.webkitVibrate ||
-    navigator.mozVibrate ||
-    navigator.msVibrate;
-
   const tg = window.Telegram.WebApp;
   const userId = tg.initDataUnsafe.user.id;
   
@@ -27,9 +21,7 @@ function App() {
   });
   const [levelMoreClicks, setlevelMoreClicks] = useState(() => {
     const savedlevelMoreClicks = localStorage.getItem("levelMoreClicks");
-    return savedlevelMoreClicks !== null
-      ? parseInt(savedlevelMoreClicks, 10)
-      : 0;
+    return savedlevelMoreClicks !== null ? parseInt(savedlevelMoreClicks, 10) : 0;
   });
   const [countTrue, setCountTrue] = useState(() => {
     const savedCountTrue = localStorage.getItem("countTrue");
@@ -110,16 +102,21 @@ function App() {
   const moreClicks = () => {
     
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
-    if (count >= priceMoreClick) {
-      if (window.confirm("here you can buy more clicks in one click 🤑")) {
-        setCount(count - priceMoreClick); 
-        setCountBonus(countBonus * 2);
-        setlevelMoreClicks(levelMoreClicks + 1);
-        alert("thanks for the purchase ✅");
-      } 
+    if (levelMoreClicks === 10) {
+      alert("max level 🔝")
     } else {
-      alert("insufficient funds ❌");
-    };
+      if (count >= priceMoreClick) {
+        if (window.confirm("here you can buy more clicks in one click 🤑")) {
+          setCount(count - priceMoreClick);
+          setCountBonus(countBonus * 2);
+          setlevelMoreClicks(levelMoreClicks + 1);
+          alert("thanks for the purchase ✅");
+        } else {
+          alert("insufficient funds ❌");
+        }
+      } 
+    }
+    
     
   }
 
