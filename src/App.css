@@ -386,14 +386,3 @@ padding-top: 5%;
         transform:rotate(360deg);}
 }
 
-.box-for-progress {
-  display: flex;
-  width: 60vw;
-  height: 60vw;
-  max-width: 100px;
-  max-height: 30px;
-  background: #ffffff;
-  border-radius: 15px 15px 15px 15px;
-  box-shadow: 1px 1px 1px 1px;
-  margin-bottom: 10px;
-}
