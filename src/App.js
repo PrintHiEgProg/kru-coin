@@ -104,7 +104,7 @@ function App() {
   
 
 //Boosts
-  const [priceMoreClicks, setpriceMoreClicks] = 1;
+  const priceMoreClicks = 1;
   const moreClicks = () => {
     
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
@@ -130,7 +130,7 @@ function App() {
     if (levelTgPremium >= 1) {
     alert("You have already completed this task ✅");
     } else {
-      if (tg.initDataUnsafe.user.is_premium) {
+      if (tg.initDataUnsafe.user.isPremium) {
         setCount(count + 1000);
         setlevelTgPremium(levelTgPremium + 1);
         alert("Yoooo!\nCongratulations on buying TG Premium! ⭐️");
