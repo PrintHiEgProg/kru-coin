@@ -23,6 +23,10 @@ function App() {
     const savedlevelMoreClicks = localStorage.getItem("levelMoreClicks");
     return savedlevelMoreClicks !== null ? parseInt(savedlevelMoreClicks, 10) : 0;
   });
+  const [levelTgPremium, setlevelTgPremium] = useState(() => {
+    const savedlevelTgPremium = localStorage.getItem("levelTgPremium");
+    return savedlevelTgPremium !== null ? parseInt(savedlevelTgPremium, 10) : 0;
+  });
   const [countTrue, setCountTrue] = useState(() => {
     const savedCountTrue = localStorage.getItem("countTrue");
     const lastUpdateTime = localStorage.getItem("lastUpdateTime");
@@ -97,28 +101,45 @@ function App() {
     // Здесь можно добавить логику для загрузки данных с сервера или другие операции
   }, []);
 
-  const priceMoreClick = 1
+  
 
+//Boosts
+  const [priceMoreClicks, setpriceMoreClicks] = 1;
   const moreClicks = () => {
     
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
     if (levelMoreClicks === 10) {
       alert("max level 🔝")
     } else {
-      if (count >= priceMoreClick) {
-        if (window.confirm("here you can buy more clicks in one click 🤑")) {
-          setCount(count - priceMoreClick);
+      if (window.confirm("here you can buy more clicks in one click 🤑")) {
+        if (count >= priceMoreClicks) {
+          setCount(count - priceMoreClicks);
           setCountBonus(countBonus * 2);
           setlevelMoreClicks(levelMoreClicks + 1);
           alert("thanks for the purchase ✅");
         } else {
           alert("insufficient funds ❌");
         }
-      } 
+      }
+    }
+  };
+
+
+//Tasks
+  const TgPremium = () => {
+    if (levelTgPremium >= 1) {
+    alert("You have already completed this task ✅");
+    } else {
+      if (tg.initDataUnsafe.user.is_premium) {
+        setCount(count + 1000);
+        setlevelTgPremium(levelTgPremium + 1);
+        alert("Yoooo!\nCongratulations on buying TG Premium! ⭐️");
+      } else {
+        alert("sorry, but you don't have tg premium 😔");
+      }
     }
     
-    
-  }
+  };
 
   return (
     <div className="App">
@@ -156,12 +177,12 @@ function App() {
                 <Boost
                   count={count}
                   moreClicks={moreClicks}
-                  priceMoreClick={priceMoreClick}
+                  priceMoreClicks={priceMoreClicks}
                   levelMoreClicks={levelMoreClicks}
                 />
               }
             />
-            <Route path="/task" element={<Task />} />
+            <Route path="/task" element={<Task TgPremium={TgPremium}/>} />
             <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>
           <NavBar />
