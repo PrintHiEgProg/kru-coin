@@ -11,19 +11,19 @@ function Main({count, countTrue, handleClick, canClick}) {
           className="coin-button"
           onClick={handleClick}
           disabled={!canClick || countTrue === 0}
-          
         >
           ...
         </button>
       </div>
-          <div className="box-progress">
-              
-        <hr className="coin-progress" style={{ width: countTrue * 10 }} />
+      <div className="box-progress">
+        <div className="box-for-progress">
+          <hr className="coin-progress" style={{ width: countTrue * 10 }} />
+        </div>
+
         <p className="sum-true">
           <b>{countTrue}</b>
         </p>
       </div>
-      
     </div>
   );
 }
