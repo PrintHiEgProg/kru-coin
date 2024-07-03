@@ -387,3 +387,7 @@ padding-top: 5%;
         transform:rotate(360deg);}
 }
 
+.coin-progress-helper {
+  text-align: center;
+  align-items: center;
+}
