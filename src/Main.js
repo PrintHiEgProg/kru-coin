@@ -16,9 +16,9 @@ function Main({count, countTrue, handleClick, canClick}) {
         </button>
       </div>
       <div className="box-progress">
-        <div className="coin-progress-helper">
+        
           <hr className="coin-progress" style={{ width: countTrue * 10 }} />
-        </div>
+        
 
         <p className="sum-true">
           <b>{countTrue}</b>
