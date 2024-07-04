@@ -22,7 +22,7 @@ function App() {
   });
   const [countTrueMax, setcountTrueMax] = useState(() => {
     const savedcountTrueMax = localStorage.getItem("countTrueMax");
-    return savedcountTrueMax !== null ? parseInt(savedcountTrueMax, 10) : 0;
+    return savedcountTrueMax !== null ? parseInt(savedcountTrueMax, 10) : 10;
   });
   const [levelMoreClicks, setLevelMoreClicks] = useState(() => {
     const savedLevelMoreClicks = localStorage.getItem("levelMoreClicks");
@@ -64,13 +64,18 @@ function App() {
     localStorage.setItem("count", count.toString());
     localStorage.setItem("countTrue", countTrue.toString());
     localStorage.setItem("lastUpdateTime", Date.now().toString());
-
+    localStorage.setItem("countBonus", countBonus.toString());
+    localStorage.setItem("countTrueMax", countTrueMax.toString());
+    localStorage.setItem("levelMoreClicks", levelMoreClicks.toString());
+    localStorage.setItem("levelMoreEnergy", levelMoreEnergy.toString());
+    localStorage.setItem("levelTgChannel1", levelTgChannel1.toString());
+    localStorage.setItem("levelTgPremium", levelTgPremium.toString());
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer > 0) {
           return prevTimer - 1;
         } else {
-          setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, canClick));
+          setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, countTrueMax));
           return countTrueMax; // Reset timer to 10
         }
       });
