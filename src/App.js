@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useNavigate } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar.js";
 import Boost from "./Boost.js";
 import Main from "./Main.js";
 import Task from "./Task.js";
 import RefLink from "./RefLink.js";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function App() {
