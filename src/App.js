@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useNavigate } from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar.js";
 import Boost from "./Boost.js";
@@ -6,6 +6,7 @@ import Main from "./Main.js";
 import Task from "./Task.js";
 import RefLink from "./RefLink.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import axios from "axios";
 
 function App() {
   const tg = window.Telegram.WebApp;
@@ -19,9 +20,15 @@ function App() {
     const savedCountBonus = localStorage.getItem("countBonus");
     return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
   });
-  const [levelMoreClicks, setlevelMoreClicks] = useState(() => {
+  const [levelMoreClicks, setLevelMoreClicks] = useState(() => {
     const savedlevelMoreClicks = localStorage.getItem("levelMoreClicks");
     return savedlevelMoreClicks !== null ? parseInt(savedlevelMoreClicks, 10) : 0;
+  });
+  const [levelMoreEnergy, setLevelMoreEnergy] = useState(() => {
+    const savedlevelMoreEnergy = localStorage.getItem("levelMoreEnergy");
+    return savedlevelMoreEnergy !== null
+      ? parseInt(savedlevelMoreEnergy, 10)
+      : 0;
   });
   const [levelTgPremium, setlevelTgPremium] = useState(() => {
     const savedlevelTgPremium = localStorage.getItem("levelTgPremium");
@@ -109,16 +116,40 @@ function App() {
     
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
     if (levelMoreClicks === 10) {
-      alert("max level 🔝")
+      alert("Max level 🔝")
     } else {
-      if (window.confirm("here you can buy more clicks in one click 🤑")) {
+      if (
+        window.confirm(
+          "Here you can buy more clicks in one click 🤑.\nBuy it?"
+        )
+      ) {
         if (count >= priceMoreClicks) {
           setCount(count - priceMoreClicks);
           setCountBonus(countBonus * 2);
-          setlevelMoreClicks(levelMoreClicks + 1);
-          alert("thanks for the purchase ✅");
+          setLevelMoreClicks(levelMoreClicks + 1);
+          alert("Thanks for the purchase ✅");
         } else {
-          alert("insufficient funds ❌");
+          alert("Insufficient funds ❌");
+        }
+      }
+    }
+  };
+
+
+  const priceMoreEnergy = 10;
+  const moreEnergy = () => {
+    const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
+    if (levelMoreEnergy === 5) {
+      alert("Max level 🔝");
+    } else {
+      if (window.confirm("Here you can buy more energy.\nBuy it?")) {
+        if (canClick >= priceMoreEnergy) {
+          setCanClick(count - priceMoreEnergy);
+          setCanClick(canClick + 1500);
+          setLevelMoreEnergy(levelMoreEnergy + 1);
+          alert("Thanks for the purchase ✅");
+        } else {
+          alert("Insufficient funds ❌");
         }
       }
     }
@@ -127,18 +158,57 @@ function App() {
 
 //Tasks
   const TgPremium = () => {
-    if (levelTgPremium >= 1) {
+    const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
+    if (levelTgPremium === 1) {
     alert("You have already completed this task ✅");
     } else {
-      if (tg.initDataUnsafe.user.isPremium) {
-        setCount(count + 1000);
-        setlevelTgPremium(levelTgPremium + 1);
-        alert("Yoooo!\nCongratulations on buying TG Premium! ⭐️");
-      } else {
-        alert("sorry, but you don't have tg premium 😔");
+      if (
+        window.confirm(
+          "If you have Telegram premium you get +1000 coins.\nTo execute?"
+        )
+      ) {
+  if (tg.initDataUnsafe.user.isPremium) {
+    setCount(count + 1000);
+    setlevelTgPremium(levelTgPremium + 1);
+    alert("Yoooo!\nCongratulations on buying TG Premium! ⭐️");
+  } else {
+    alert("Sorry, but you don't have tg premium 😔");
+}
       }
     }
     
+  };
+
+  const TGChannel = () => {
+    const [isSubscribed, setIsSubscribed] = useState(false);
+    const navigate = useNavigate();
+    const handleSubscribe = () => {
+      window.open("https://t.me/***", "_blank"); //ссылка на тгк
+    };
+
+    const checkSubsciption = async () => {
+      try {
+        //endpoint api
+
+        const response = await axios.get("https://api.server.com/check-sub");
+        if (response.data.subscribed) {
+          setIsSubscribed(true);
+
+          const currentCount = parseInt(localStorage.getItem("count"), 10) || 0;
+
+          localStorage.setItem("count", currentCount + 20000);
+          alert(
+            "спасибо за выполнения задания, нам важно ваше присутствие с нами"
+          );
+        } else {
+          alert(
+            "Пожалуйста, подпишитесь на канал для получения вознаграждения"
+          );
+        }
+      } catch (error) {
+        console.error("watafak", error);
+      }
+    };
   };
 
   return (
@@ -152,7 +222,8 @@ function App() {
           </h1>
           <img
             className="loading-wheel"
-            src="https://printhiegprog.github.io/loading-wheel.png" alt="loading-wheel"
+            src="https://printhiegprog.github.io/loading-wheel.png"
+            alt="loading-wheel"
           />
           <div className="contact"></div>
         </div>
@@ -172,17 +243,20 @@ function App() {
               }
             />
             <Route
-              path="/boost"
-              element={
-                <Boost
-                  count={count}
-                  moreClicks={moreClicks}
-                  priceMoreClicks={priceMoreClicks}
-                  levelMoreClicks={levelMoreClicks}
+                path="/boost"
+                element={
+                  <Boost
+                    count={count}
+                    moreClicks={moreClicks}
+                    priceMoreClicks={priceMoreClicks}
+                    levelMoreClicks={levelMoreClicks}
+                    moreEnergy={moreEnergy}
+                    priceMoreEnergy={priceMoreEnergy}
+                    levelMoreEnergy={levelMoreEnergy}
                 />
               }
             />
-            <Route path="/task" element={<Task TgPremium={TgPremium}/>} />
+            <Route path="/task" element={<Task TgPremium={TgPremium} />} />
             <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>
           <NavBar />
