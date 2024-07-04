@@ -21,18 +21,22 @@ function App() {
     return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
   });
   const [levelMoreClicks, setLevelMoreClicks] = useState(() => {
-    const savedlevelMoreClicks = localStorage.getItem("levelMoreClicks");
-    return savedlevelMoreClicks !== null ? parseInt(savedlevelMoreClicks, 10) : 0;
+    const savedLevelMoreClicks = localStorage.getItem("levelMoreClicks");
+    return savedLevelMoreClicks !== null ? parseInt(savedLevelMoreClicks, 10) : 0;
   });
   const [levelMoreEnergy, setLevelMoreEnergy] = useState(() => {
-    const savedlevelMoreEnergy = localStorage.getItem("levelMoreEnergy");
-    return savedlevelMoreEnergy !== null
-      ? parseInt(savedlevelMoreEnergy, 10)
+    const savedLevelMoreEnergy = localStorage.getItem("levelMoreEnergy");
+    return savedLevelMoreEnergy !== null
+      ? parseInt(savedLevelMoreEnergy, 10)
       : 0;
   });
+  const [levelTgChannel1, setLevelTgChannel1] = useState(() => {
+    const savedLevelTgChannel1 = localStorage.getItem("levelTgChannel1");
+    return savedLevelTgChannel1 !== null ? parseInt(savedLevelTgChannel1, 10) : 0;
+  });
   const [levelTgPremium, setlevelTgPremium] = useState(() => {
-    const savedlevelTgPremium = localStorage.getItem("levelTgPremium");
-    return savedlevelTgPremium !== null ? parseInt(savedlevelTgPremium, 10) : 0;
+    const savedLevelTgPremium = localStorage.getItem("levelTgPremium");
+    return savedLevelTgPremium !== null ? parseInt(savedLevelTgPremium, 10) : 0;
   });
   const [countTrue, setCountTrue] = useState(() => {
     const savedCountTrue = localStorage.getItem("countTrue");
@@ -179,37 +183,54 @@ function App() {
     
   };
 
-  const TGChannel = () => {
+  const TGChannel1 = () => {
+    const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
     const [isSubscribed, setIsSubscribed] = useState(false);
     const navigate = useNavigate();
-    const handleSubscribe = () => {
-      window.open("https://t.me/***", "_blank"); //ссылка на тгк
-    };
+    if (levelTgChannel1 === 1) {
+      alert("You have already completed this task ✅");
+    } else {
+      const checkSubsciption = async () => {
+        try {
+          //endpoint api
 
-    const checkSubsciption = async () => {
-      try {
-        //endpoint api
+          const response = await axios.get("https://api.server.com/check-sub");
+          if (response.data.subscribed) {
+            setIsSubscribed(true);
 
-        const response = await axios.get("https://api.server.com/check-sub");
-        if (response.data.subscribed) {
-          setIsSubscribed(true);
+            const currentCount =
+              parseInt(localStorage.getItem("count"), 10) || 0;
 
-          const currentCount = parseInt(localStorage.getItem("count"), 10) || 0;
+            localStorage.setItem("count", currentCount + 20000);
+            alert(
+              "спасибо за выполнения задания, нам важно ваше присутствие с нами"
+            );
+          } else {
+            if (
+              window.confirm(
+                "Subscribe to the telegram channel and get +20,000 coins. To execute?"
+              )
+            ) {
+              //выполнение задания
 
-          localStorage.setItem("count", currentCount + 20000);
-          alert(
-            "спасибо за выполнения задания, нам важно ваше присутствие с нами"
-          );
-        } else {
-          alert(
-            "Пожалуйста, подпишитесь на канал для получения вознаграждения"
-          );
+              const handleSubscribe = () => {
+                tg.openTelegramLink(
+                  "https://t.me/deanon_team_blog",
+                  "_blank"
+                ); //ссылка на тгк
+              };
+            }
+          }
+        } catch (error) {
+          console.error("watafak", error);
         }
-      } catch (error) {
-        console.error("watafak", error);
-      }
-    };
-  };
+      };
+    }
+    
+  }
+    
+
+    
 
   return (
     <div className="App">
@@ -256,7 +277,7 @@ function App() {
                 />
               }
             />
-            <Route path="/task" element={<Task TgPremium={TgPremium} />} />
+              <Route path="/task" element={<Task TgPremium={TgPremium} TGChannel1={TGChannel1}/>} />
             <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>
           <NavBar />
