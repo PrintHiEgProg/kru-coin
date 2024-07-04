@@ -49,7 +49,7 @@ function App() {
     ) {
       return Math.max(parseInt(savedCountTrue, 10), 0);
     } else {
-      return 10;
+      return canClick;
     }
   });
 

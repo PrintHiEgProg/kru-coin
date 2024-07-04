@@ -107,6 +107,7 @@
   display: block; /* Убираем лишние отступы вокруг изображения */
   -o-object-fit: cover;
      object-fit: cover;
+  
 }
 
 .img-boobs {
