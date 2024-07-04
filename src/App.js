@@ -53,7 +53,7 @@ function App() {
     }
   });
 
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(3);
   const [canClick, setCanClick] = useState(true);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function App() {
           return prevTimer - 1;
         } else {
           setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, 10));
-          return 10; // Reset timer to 10
+          return canClick; // Reset timer to 10
         }
       });
     }, 1000);
@@ -143,13 +143,14 @@ function App() {
   const priceMoreEnergy = 10;
   const moreEnergy = () => {
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
-    if (levelMoreEnergy === 5) {
+    if (levelMoreEnergy === 7) {
       alert("Max level 🔝");
     } else {
       if (window.confirm("Here you can buy more energy.\nBuy it?")) {
         if (count >= priceMoreEnergy) {
           setCount(count - priceMoreEnergy);
-          setCountTrue(countTrue + 1500);
+          setCountTrue(countTrue + 1000);
+          setCanClick(canClick + 1000)
           setLevelMoreEnergy(levelMoreEnergy + 1);
           alert("Thanks for the purchase ✅");
         } else {
@@ -205,6 +206,7 @@ function App() {
             alert(
               "спасибо за выполнения задания, нам важно ваше присутствие с нами"
             );
+            setLevelTgChannel1(levelMoreEnergy + 1);
           } else {
             if (
               window.confirm(
