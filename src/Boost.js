@@ -1,5 +1,48 @@
 import React from "react";
 
+
+//Boosts
+const priceMoreClicks = 1;
+const moreClicks = () => {
+  const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
+  if (levelMoreClicks === 10) {
+    alert("Max level 🔝");
+  } else {
+    if (
+      window.confirm("Here you can buy more clicks in one click 🤑.\nBuy it?")
+    ) {
+      if (count >= priceMoreClicks) {
+        setCount(count - priceMoreClicks);
+        setCountBonus(countBonus * 2);
+        setLevelMoreClicks(levelMoreClicks + 1);
+        alert("Thanks for the purchase ✅");
+      } else {
+        alert("Insufficient funds ❌");
+      }
+    }
+  }
+};
+
+const priceMoreEnergy = 10;
+const moreEnergy = () => {
+  const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
+  if (levelMoreEnergy === 7) {
+    alert("Max level 🔝");
+  } else {
+    if (window.confirm("Here you can buy more energy.\nBuy it?")) {
+      if (count >= priceMoreEnergy) {
+        setCount(count - priceMoreEnergy);
+        setCountTrue(countTrue + 1000);
+        setcountTrueMax(countTrueMax + 1000);
+        setLevelMoreEnergy(levelMoreEnergy + 1);
+        alert("Thanks for the purchase ✅");
+      } else {
+        alert("Insufficient funds ❌");
+      }
+    }
+  }
+};
+
 function Boost({
   count,
   moreClicks,
