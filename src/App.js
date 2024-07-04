@@ -53,25 +53,25 @@ function App() {
     ) {
       return Math.max(parseInt(savedCountTrue, 10), 0);
     } else {
-      return countTrueMax;
+      return 10;
     }
   });
 
-  const [timer, setTimer] = useState(3);
+  const [timer, setTimer] = useState(10);
   const [canClick, setCanClick] = useState(true);
 
   useEffect(() => {
     localStorage.setItem("count", count.toString());
     localStorage.setItem("countTrue", countTrue.toString());
     localStorage.setItem("lastUpdateTime", Date.now().toString());
-    
+
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer > 0) {
           return prevTimer - 1;
         } else {
-          setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, countTrueMax));
-          return countTrueMax; // Reset timer to 10
+          setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, 10));
+          return 10; // Reset timer to 10
         }
       });
     }, 1000);
