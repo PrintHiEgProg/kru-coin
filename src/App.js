@@ -5,13 +5,18 @@ import Boost from "./Boost.js";
 import Main from "./Main.js";
 import Task from "./Task.js";
 import RefLink from "./RefLink.js";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import axios from "axios";
 
 function App() {
   const tg = window.Telegram.WebApp;
   const userId = tg.initDataUnsafe.user.id;
-  
+
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem("count");
     return savedCount !== null ? parseInt(savedCount, 10) : 0;
@@ -21,20 +26,26 @@ function App() {
     return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
   });
   const [countTrueMax, setcountTrueMax] = useState(() => {
-    const savedCountTrueMax = localStorage.getItem("countTrueMax");
-    return savedCountTrueMax !== null ? parseInt(savedCountTrueMax, 10) : 10;
+    const savedcountTrueMax = localStorage.getItem("countTrueMax");
+    return savedcountTrueMax !== null ? parseInt(savedcountTrueMax, 10) : 0;
   });
   const [levelMoreClicks, setLevelMoreClicks] = useState(() => {
     const savedLevelMoreClicks = localStorage.getItem("levelMoreClicks");
-    return savedLevelMoreClicks !== null ? parseInt(savedLevelMoreClicks, 10) : 0;
+    return savedLevelMoreClicks !== null
+      ? parseInt(savedLevelMoreClicks, 10)
+      : 0;
   });
   const [levelMoreEnergy, setLevelMoreEnergy] = useState(() => {
     const savedLevelMoreEnergy = localStorage.getItem("levelMoreEnergy");
-    return savedLevelMoreEnergy !== null ? parseInt(savedLevelMoreEnergy, 10) : 0;
+    return savedLevelMoreEnergy !== null
+      ? parseInt(savedLevelMoreEnergy, 10)
+      : 0;
   });
   const [levelTgChannel1, setLevelTgChannel1] = useState(() => {
     const savedLevelTgChannel1 = localStorage.getItem("levelTgChannel1");
-    return savedLevelTgChannel1 !== null ? parseInt(savedLevelTgChannel1, 10) : 0;
+    return savedLevelTgChannel1 !== null
+      ? parseInt(savedLevelTgChannel1, 10)
+      : 0;
   });
   const [levelTgPremium, setlevelTgPremium] = useState(() => {
     const savedLevelTgPremium = localStorage.getItem("levelTgPremium");
@@ -51,11 +62,11 @@ function App() {
     ) {
       return Math.max(parseInt(savedCountTrue, 10), 0);
     } else {
-      return 10;
+      return countTrueMax;
     }
   });
 
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(3);
   const [canClick, setCanClick] = useState(true);
 
   useEffect(() => {
@@ -68,8 +79,10 @@ function App() {
         if (prevTimer > 0) {
           return prevTimer - 1;
         } else {
-          setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, 10));
-          return 10; // Reset timer to 10
+          setCountTrue((prevCountTrue) =>
+            Math.min(prevCountTrue + 1, canClick)
+          );
+          return countTrueMax; // Reset timer to 10
         }
       });
     }, 1000);
@@ -83,7 +96,6 @@ function App() {
       if (true) {
         const hapticFeedbackLight = tg.HapticFeedback.impactOccurred("light");
       }
-    
 
       if (countTrue > 0) {
         setCountTrue(Math.max(countTrue - 1, 0));
@@ -98,7 +110,8 @@ function App() {
 
   useEffect(() => {
     if (countTrue === 0) {
-      const HapticFeedbackError = tg.HapticFeedback.notificationOccurred("warning");
+      const HapticFeedbackError =
+        tg.HapticFeedback.notificationOccurred("warning");
       alert("Scrooge is tired... 😴");
     }
   }, [countTrue]);
@@ -114,20 +127,15 @@ function App() {
     // Здесь можно добавить логику для загрузки данных с сервера или другие операции
   }, []);
 
-  
-
-//Boosts
+  //Boosts
   const priceMoreClicks = 1;
   const moreClicks = () => {
-    
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
     if (levelMoreClicks === 10) {
-      alert("Max level 🔝")
+      alert("Max level 🔝");
     } else {
       if (
-        window.confirm(
-          "Here you can buy more clicks in one click 🤑.\nBuy it?"
-        )
+        window.confirm("Here you can buy more clicks in one click 🤑.\nBuy it?")
       ) {
         if (count >= priceMoreClicks) {
           setCount(count - priceMoreClicks);
@@ -141,7 +149,6 @@ function App() {
     }
   };
 
-
   const priceMoreEnergy = 10;
   const moreEnergy = () => {
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
@@ -152,7 +159,7 @@ function App() {
         if (count >= priceMoreEnergy) {
           setCount(count - priceMoreEnergy);
           setCountTrue(countTrue + 1000);
-          setcountTrueMax(countTrueMax + 1000)
+          setcountTrueMax(countTrueMax + 1000);
           setLevelMoreEnergy(levelMoreEnergy + 1);
           alert("Thanks for the purchase ✅");
         } else {
@@ -162,28 +169,26 @@ function App() {
     }
   };
 
-
-//Tasks
+  //Tasks
   const TgPremium = () => {
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
     if (levelTgPremium === 1) {
-    alert("You have already completed this task ✅");
+      alert("You have already completed this task ✅");
     } else {
       if (
         window.confirm(
           "If you have Telegram premium you get +1000 coins.\nTo execute?"
         )
       ) {
-  if (tg.initDataUnsafe.user.isPremium) {
-    setCount(count + 1000);
-    setlevelTgPremium(levelTgPremium + 1);
-    alert("Yoooo!\nCongratulations on buying TG Premium! ⭐️");
-  } else {
-    alert("Sorry, but you don't have tg premium 😔");
-}
+        if (tg.initDataUnsafe.user.isPremium) {
+          setCount(count + 1000);
+          setlevelTgPremium(levelTgPremium + 1);
+          alert("Yoooo!\nCongratulations on buying TG Premium! ⭐️");
+        } else {
+          alert("Sorry, but you don't have tg premium 😔");
+        }
       }
     }
-    
   };
 
   const TgChannel1 = () => {
@@ -218,10 +223,7 @@ function App() {
               //выполнение задания
 
               const handleSubscribe = () => {
-                tg.openTelegramLink(
-                  "https://t.me/deanon_team_blog",
-                  "_blank"
-                ); //ссылка на тгк
+                tg.openTelegramLink("https://t.me/deanon_team_blog", "_blank"); //ссылка на тгк
               };
             }
           }
@@ -230,11 +232,7 @@ function App() {
         }
       };
     }
-    
-  }
-    
-
-    
+  };
 
   return (
     <div className="App">
@@ -268,20 +266,23 @@ function App() {
               }
             />
             <Route
-                path="/boost"
-                element={
-                  <Boost
-                    count={count}
-                    moreClicks={moreClicks}
-                    priceMoreClicks={priceMoreClicks}
-                    levelMoreClicks={levelMoreClicks}
-                    moreEnergy={moreEnergy}
-                    priceMoreEnergy={priceMoreEnergy}
-                    levelMoreEnergy={levelMoreEnergy}
+              path="/boost"
+              element={
+                <Boost
+                  count={count}
+                  moreClicks={moreClicks}
+                  priceMoreClicks={priceMoreClicks}
+                  levelMoreClicks={levelMoreClicks}
+                  moreEnergy={moreEnergy}
+                  priceMoreEnergy={priceMoreEnergy}
+                  levelMoreEnergy={levelMoreEnergy}
                 />
               }
             />
-              <Route path="/task" element={<Task TgPremium={TgPremium} TgChannel1={TgChannel1}/>} />
+            <Route
+              path="/task"
+              element={<Task TgPremium={TgPremium} TgChannel1={TgChannel1} />}
+            />
             <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>
           <NavBar />
