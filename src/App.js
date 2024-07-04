@@ -147,8 +147,8 @@ function App() {
       alert("Max level 🔝");
     } else {
       if (window.confirm("Here you can buy more energy.\nBuy it?")) {
-        if (canClick >= priceMoreEnergy) {
-          setCanClick(count - priceMoreEnergy);
+        if (count >= priceMoreEnergy) {
+          setCount(count - priceMoreEnergy);
           setCanClick(canClick + 1500);
           setLevelMoreEnergy(levelMoreEnergy + 1);
           alert("Thanks for the purchase ✅");
