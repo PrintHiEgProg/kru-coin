@@ -20,6 +20,10 @@ function App() {
     const savedCountBonus = localStorage.getItem("countBonus");
     return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
   });
+  const [countTrueMax, setcountTrueMax] = useState(() => {
+    const savedcountTrueMax = localStorage.getItem("countTrueMax");
+    return savedcountTrueMax !== null ? parseInt(savedcountTrueMax, 10) : 0;
+  });
   const [levelMoreClicks, setLevelMoreClicks] = useState(() => {
     const savedLevelMoreClicks = localStorage.getItem("levelMoreClicks");
     return savedLevelMoreClicks !== null ? parseInt(savedLevelMoreClicks, 10) : 0;
@@ -49,7 +53,7 @@ function App() {
     ) {
       return Math.max(parseInt(savedCountTrue, 10), 0);
     } else {
-      return canClick;
+      return countTrueMax;
     }
   });
 
@@ -66,8 +70,8 @@ function App() {
         if (prevTimer > 0) {
           return prevTimer - 1;
         } else {
-          setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, 10));
-          return canClick; // Reset timer to 10
+          setCountTrue((prevCountTrue) => Math.min(prevCountTrue + 1, canClick));
+          return countTrueMax; // Reset timer to 10
         }
       });
     }, 1000);
@@ -150,7 +154,7 @@ function App() {
         if (count >= priceMoreEnergy) {
           setCount(count - priceMoreEnergy);
           setCountTrue(countTrue + 1000);
-          setCanClick(canClick + 1000)
+          setCanClick(countTrueMax + 1000)
           setLevelMoreEnergy(levelMoreEnergy + 1);
           alert("Thanks for the purchase ✅");
         } else {
