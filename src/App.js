@@ -21,8 +21,8 @@ function App() {
     return savedCountBonus !== null ? parseInt(savedCountBonus, 10) : 1;
   });
   const [countTrueMax, setcountTrueMax] = useState(() => {
-    const savedcountTrueMax = localStorage.getItem("countTrueMax");
-    return savedcountTrueMax !== null ? parseInt(savedcountTrueMax, 10) : 10;
+    const savedCountTrueMax = localStorage.getItem("countTrueMax");
+    return savedCountTrueMax !== null ? parseInt(savedCountTrueMax, 10) : 10;
   });
   const [levelMoreClicks, setLevelMoreClicks] = useState(() => {
     const savedLevelMoreClicks = localStorage.getItem("levelMoreClicks");
@@ -30,9 +30,7 @@ function App() {
   });
   const [levelMoreEnergy, setLevelMoreEnergy] = useState(() => {
     const savedLevelMoreEnergy = localStorage.getItem("levelMoreEnergy");
-    return savedLevelMoreEnergy !== null
-      ? parseInt(savedLevelMoreEnergy, 10)
-      : 0;
+    return savedLevelMoreEnergy !== null ? parseInt(savedLevelMoreEnergy, 10) : 0;
   });
   const [levelTgChannel1, setLevelTgChannel1] = useState(() => {
     const savedLevelTgChannel1 = localStorage.getItem("levelTgChannel1");
