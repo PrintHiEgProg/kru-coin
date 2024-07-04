@@ -64,12 +64,7 @@ function App() {
     localStorage.setItem("count", count.toString());
     localStorage.setItem("countTrue", countTrue.toString());
     localStorage.setItem("lastUpdateTime", Date.now().toString());
-    localStorage.setItem("countBonus", countBonus.toString());
-    localStorage.setItem("countTrueMax", countTrueMax.toString());
-    localStorage.setItem("levelMoreClicks", levelMoreClicks.toString());
-    localStorage.setItem("levelMoreEnergy", levelMoreEnergy.toString());
-    localStorage.setItem("levelTgChannel1", levelTgChannel1.toString());
-    localStorage.setItem("levelTgPremium", levelTgPremium.toString());
+    
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer > 0) {
