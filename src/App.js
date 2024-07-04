@@ -154,7 +154,7 @@ function App() {
         if (count >= priceMoreEnergy) {
           setCount(count - priceMoreEnergy);
           setCountTrue(countTrue + 1000);
-          setCanClick(countTrueMax + 1000)
+          setcountTrueMax(countTrueMax + 1000)
           setLevelMoreEnergy(levelMoreEnergy + 1);
           alert("Thanks for the purchase ✅");
         } else {
