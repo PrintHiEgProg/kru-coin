@@ -149,7 +149,7 @@ function App() {
       if (window.confirm("Here you can buy more energy.\nBuy it?")) {
         if (count >= priceMoreEnergy) {
           setCount(count - priceMoreEnergy);
-          setCanClick(canClick + 1500);
+          setCountTrue(countTrue + 1500);
           setLevelMoreEnergy(levelMoreEnergy + 1);
           alert("Thanks for the purchase ✅");
         } else {
@@ -183,7 +183,7 @@ function App() {
     
   };
 
-  const TGChannel1 = () => {
+  const TgChannel1 = () => {
     const hapticFeedbackSoft = tg.HapticFeedback.impactOccurred("soft");
     const [isSubscribed, setIsSubscribed] = useState(false);
     const navigate = useNavigate();
@@ -277,7 +277,7 @@ function App() {
                 />
               }
             />
-              <Route path="/task" element={<Task TgPremium={TgPremium} TGChannel1={TGChannel1}/>} />
+              <Route path="/task" element={<Task TgPremium={TgPremium} TgChannel1={TgChannel1}/>} />
             <Route path="/link" element={<RefLink userId={userId} />} />
           </Routes>
           <NavBar />
